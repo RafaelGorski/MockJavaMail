@@ -25,7 +25,10 @@
   </target>
 
   <target name="compile" description="compile source code">
-
+    <javac srcdir="${src.dir}" destdir="${build.dir}"  >
+      <classpath refid="classpath" />
+      <include name="**/*.java" />
+    </javac>
   </target>
   
   
@@ -36,6 +39,10 @@
   <target name="clean" description="clean built files">
     <delete dir="${build.dir}"/>
     <delete dir="${dist.dir}"/>
+
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${dist.dir}"/>
+  
   </target>
 
   <target name="all" depends="clean, resolve, compile, dist" description="Clean all project, download the dependencies and build the JAR file" />
