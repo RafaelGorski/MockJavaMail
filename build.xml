@@ -1,23 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<project name="MockJavaMail" default="all" basedir="." description="MockJavaMail ant build script">
+<project name="MockJavaMail" default="all" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" >
+  <echo message="Starting ${ant.project.name}"/>
+
   <property name="src" location="src"/>
-   <property name="build" location="build"/>
-   <property name="dist"  location="dist"/>
-   <property name="lib"  location="lib"/>
+  <property name="build" location="build"/>
+  <property name="dist"  location="dist"/>
+  <property name="lib"  location="lib"/>
 
    <!-- Run ant resolve to populate the JAR dependencies-->
   <path id="classpath">
     <fileset dir="${lib}" includes="*.jar"/>
   </path>
 
-    <target name="resolve">
-        
-    </target>
+   <!-- Download Ivy from apache and change the path here -->
+  <path id="ivy.lib.path">
+    <fileset dir="/usr/local/ivy" includes="*.jar"/>
+  </path>
+  
+  <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+  <taskdef name="junit" classname="org.apache.tools.ant.taskdefs.optional.junit.JUnitTask" classpathref="classpath" />
+      
+  <target name="resolve" description="Ivy dependency resolver">
+    <ivy:retrieve pattern="${basedir}/${lib}/[artifact]-[type]-[revision].[ext]" conf="default" />
+  </target>
 
-    <target name="clean" description="clean built files">
-      <delete dir="${build}"/>
-      <delete dir="${dist}"/>
-    </target>
+  <target name="compile" description="compile source code">
 
-    <target name="all" depends="clean, resolve, compile, dist" description="Clean all project, download the dependencies and build the JAR file" />
+  </target>
+  
+  
+  <target name="dist" description="generate a jar file with project files">
+
+  </target>
+  
+  <target name="clean" description="clean built files">
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+  </target>
+
+  <target name="all" depends="clean, resolve, compile, dist" description="Clean all project, download the dependencies and build the JAR file" />
 </project>

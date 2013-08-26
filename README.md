@@ -17,8 +17,8 @@ Import the classes to your project.
 Running this project standalone
 ====
 
-Download ANT
-Download Ivy
+Download ANT 
+Download Ivy (http://ant.apache.org/ivy/download.cgi)
 Run in the commandline: ant
 
 If you ant to see the tests run ant test
