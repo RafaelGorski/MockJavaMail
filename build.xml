@@ -5,6 +5,11 @@
    <property name="dist"  location="dist"/>
    <property name="lib"  location="lib"/>
 
+   <!-- Run ant resolve to populate the JAR dependencies-->
+  <path id="classpath">
+    <fileset dir="${lib}" includes="*.jar"/>
+  </path>
+
     <target name="resolve">
         
     </target>
