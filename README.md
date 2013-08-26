@@ -8,3 +8,17 @@ Objective
 
 Extend the original work from Kohsuke Kawaguchi.
 
+How to use it?
+====
+
+Import the classes to your project.
+:)
+
+Running this project standalone
+====
+
+Download ANT
+Download Ivy
+Run in the commandline: ant
+
+If you ant to see the tests run ant test
